@@ -154,35 +154,6 @@ chmod +x start_server.sh
 
 ---
 
-### 📊 **Monitoring and Metrics**
-
-#### **CloudWatch Setup**
-- Monitor logs and metrics for EC2, ALB, and application performance.
-- Create alarms for unusual traffic or CPU spikes.
-
----
-
-### 🌐 **Architecture Overview**
-
-The following architecture diagram explains the flow of user requests and application components:
-
-1. **Users**: Access the application via CloudFront.
-2. **CloudFront**: Routes requests to ALB.
-3. **ALB**: Balances traffic across EC2 instances.
-4. **EC2**: Hosts the application.
-5. **RDS**: Handles the database layer.
-6. **CloudWatch**: Logs and monitors the system.
-7. **CodePipeline**: Automates code deployment.
-
----
-
-### ✍️ **Future Enhancements**
-- Add SSL certificates for secure traffic (HTTPS).
-- Implement autoscaling for EC2 instances based on demand.
-- Extend WAF rules for advanced filtering.
-
----
-
 
 
 ### 3. Creating the Buildspec File ⚙️
