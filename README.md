@@ -98,6 +98,93 @@ This project implements a cloud-based architecture for hosting a web application
   3. Add CodeBuild as the build provider and configure the buildspec.yml file.
   4. Use CodeDeploy to deploy the application to the EC2 instance.
 
+#### 2.1 **Scripts for Automation**
+
+Upload the following scripts to the EC2 instance:
+
+#### **install_dependencies.sh**
+```bash
+#!/bin/bash
+# Update the system
+echo "Updating system packages..."
+sudo yum update -y
+
+# Install dependencies
+echo "Installing dependencies..."
+sudo yum install -y httpd git
+```
+
+#### **start_server.sh**
+```bash
+#!/bin/bash
+# Start the Apache web server
+echo "Starting Apache web server..."
+sudo systemctl start httpd
+
+# Enable Apache on boot
+echo "Enabling Apache to start on boot..."
+sudo systemctl enable httpd
+
+# Log message
+echo "Server started successfully!" >> app.log
+```
+
+#### 🚀 **How to Use These Scripts**
+
+##### 🛠️ **Step 1: Upload the Files**
+- Upload `install_dependencies.sh` and `start_server.sh` to your EC2 instance.
+- Place the scripts in a directory like `/home/ec2-user/scripts/` for better organization.
+
+##### ✍️ **Step 2: Make the Scripts Executable**
+Ensure the scripts have execution permissions:
+```bash
+chmod +x install_dependencies.sh  
+chmod +x start_server.sh
+```
+
+##### ▶️ **Step 3: Run the Scripts**
+- **To install dependencies:**
+  ```bash
+  sudo ./install_dependencies.sh
+  ```
+- **To start the application:**
+  ```bash
+  sudo ./start_server.sh
+  ```
+
+---
+
+### 📊 **Monitoring and Metrics**
+
+#### **CloudWatch Setup**
+- Monitor logs and metrics for EC2, ALB, and application performance.
+- Create alarms for unusual traffic or CPU spikes.
+
+---
+
+### 🌐 **Architecture Overview**
+
+The following architecture diagram explains the flow of user requests and application components:
+
+1. **Users**: Access the application via CloudFront.
+2. **CloudFront**: Routes requests to ALB.
+3. **ALB**: Balances traffic across EC2 instances.
+4. **EC2**: Hosts the application.
+5. **RDS**: Handles the database layer.
+6. **CloudWatch**: Logs and monitors the system.
+7. **CodePipeline**: Automates code deployment.
+
+---
+
+### ✍️ **Future Enhancements**
+- Add SSL certificates for secure traffic (HTTPS).
+- Implement autoscaling for EC2 instances based on demand.
+- Extend WAF rules for advanced filtering.
+
+---
+
+
+
 ### 3. Creating the Buildspec File ⚙️
 
 - **Purpose:** Define build instructions for CodeBuild.
