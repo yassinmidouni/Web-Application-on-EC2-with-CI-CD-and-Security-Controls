@@ -3,6 +3,8 @@
 ## Project Overview 📝
 
 This project implements a cloud-based architecture for hosting a web application using AWS services. It includes content delivery, security measures, monitoring, and CI/CD for application deployment. Below are the detailed steps we followed to implement and configure this architecture.
+![photo](webappec2aws.gif)
+
 
 ---
 
